@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 	import { ClerkProvider } from 'svelte-clerk';
 	import '../app.css';
 
 	const { children } = $props();
 </script>
 
-<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider publishableKey={env.PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>
