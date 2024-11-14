@@ -2,12 +2,13 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	let title = '';
-	let content = '';
-	let error = '';
-	let success = '';
+	let title = $state('');
+	let content = $state('');
+	let error = $state('');
+	let success = $state('');
 
-	async function handleSubmit() {
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
 		error = '';
 		success = '';
 
@@ -37,7 +38,7 @@
 <div class="mx-auto max-w-2xl p-4">
 	<h1 class="mb-4 text-2xl">Welcome, {data.user.firstName}</h1>
 
-	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
+	<form onsubmit={handleSubmit} class="space-y-4">
 		<div>
 			<label for="title" class="mb-1 block text-sm font-medium">Title</label>
 			<input id="title" type="text" bind:value={title} class="w-full rounded border p-2" required />
@@ -45,7 +46,8 @@
 
 		<div>
 			<label for="content" class="mb-1 block text-sm font-medium">Content</label>
-			<textarea id="content" bind:value={content} class="h-32 w-full rounded border p-2" required />
+			<textarea id="content" bind:value={content} class="h-32 w-full rounded border p-2" required
+			></textarea>
 		</div>
 
 		<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
