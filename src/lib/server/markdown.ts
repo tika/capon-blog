@@ -1,4 +1,9 @@
-export function formatPostAsMarkdown(title: string, content: string, authorId: string, date: Date) {
+export function formatArticleAsMarkdown(
+	title: string,
+	content: string,
+	authorId: string,
+	date: Date
+) {
 	return `---
 title: ${title}
 author: ${authorId}

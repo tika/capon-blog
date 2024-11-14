@@ -1,8 +1,8 @@
 import { db } from '$lib/server/db';
-import { posts } from '$lib/server/db/schema';
-import { error } from '@sveltejs/kit';
+import { articles } from '$lib/server/db/schema';
 import { GitHubService } from '$lib/server/github';
-import { formatPostAsMarkdown } from '$lib/server/markdown';
+import { error } from '@sveltejs/kit';
+import { formatArticleAsMarkdown } from '../../../lib/server/markdown';
 
 export const POST = async ({
 	locals,
@@ -24,8 +24,8 @@ export const POST = async ({
 	}
 
 	try {
-		const post = await db
-			.insert(posts)
+		const article = await db
+			.insert(articles)
 			.values({
 				title,
 				content,
@@ -38,14 +38,14 @@ export const POST = async ({
 		const fileName = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.md`;
 
 		await github.createFile({
-			path: `posts/${fileName}`,
-			content: formatPostAsMarkdown(title, content, userId, date),
-			message: `Add blog post: ${title}`
+			path: `articles/${fileName}`,
+			content: formatArticleAsMarkdown(title, content, userId, date),
+			message: `Add blog article: ${title}`
 		});
 
-		return new Response(JSON.stringify(post[0]));
+		return new Response(JSON.stringify(article[0]));
 	} catch (e) {
-		console.error('Failed to create post:', e);
-		throw error(500, 'Failed to create post');
+		console.error('Failed to create article:', e);
+		throw error(500, 'Failed to create article');
 	}
 };

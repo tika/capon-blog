@@ -13,7 +13,7 @@
 		success = '';
 
 		try {
-			const response = await fetch('/api/create-post', {
+			const response = await fetch('/api/create-article', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -23,10 +23,10 @@
 
 			if (!response.ok) {
 				const data = await response.json();
-				throw new Error(data.message || 'Failed to create post');
+				throw new Error(data.message || 'Failed to create article');
 			}
 
-			success = 'Post created successfully!';
+			success = 'Article created successfully!';
 			title = '';
 			content = '';
 		} catch (e) {
@@ -51,7 +51,7 @@
 		</div>
 
 		<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-			Create Post
+			Create Article
 		</button>
 	</form>
 

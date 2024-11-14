@@ -1,36 +1,47 @@
 <script lang="ts">
+	import { env } from '$env/dynamic/public';
+	import { ExternalLink, Github } from 'lucide-svelte';
+	import { encodeTitle, formatProperDate } from '../lib/utils';
+
 	let { data } = $props();
 </script>
 
 <div class="mx-auto max-w-4xl p-4">
-	<h1 class="mb-8 text-6xl font-semibold"><span class="text-amber-100">blog</span></h1>
-	<p class="text-xl font-light">A collection of my opinions, thoughts, and ideas.</p>
+	<div class="flex items-center gap-4">
+		<a href={env.PUBLIC_PORTFOLIO_URL} class="flex items-center gap-2 py-4 hover:text-blue-600">
+			Portfolio <ExternalLink size={16} />
+		</a>
+		<a href={env.PUBLIC_GITHUB_URL} class="flex items-center gap-2 py-4 hover:text-blue-600">
+			GitHub <Github size={16} />
+		</a>
+	</div>
+	<div class="flex flex-col gap-2">
+		<h1 class="text-6xl font-semibold">blog</h1>
+		<p class="text-lg font-light text-gray-300">
+			A collection of my opinions, thoughts, and ideas.
+		</p>
+	</div>
+
+	<hr class="my-8" />
 
 	<div class="space-y-8">
-		{#each data.posts as post}
+		{#each data.articles as article}
 			<article class="rounded-lg border p-6 shadow-sm">
-				<a href="/post/{post.id}" class="hover:text-blue-600">
-					<h2 class="mb-2 text-2xl font-semibold">{post.title}</h2>
+				<a href="/article/{encodeTitle(article.title)}" class="hover:text-blue-600">
+					<h2 class="mb-2 text-2xl font-semibold">{article.title}</h2>
 				</a>
 				<p class="mb-4 text-gray-600">
-					{new Date(post.createdAt).toLocaleDateString()}
+					{formatProperDate(new Date(article.createdAt))}
 				</p>
-				<p class="line-clamp-3 whitespace-pre-wrap">{post.content}</p>
+				<p class="line-clamp-3 whitespace-pre-wrap">{article.content}</p>
 				<div class="mt-4">
-					<a href="/post/{post.id}" class="text-blue-500 hover:text-blue-600"> Read more → </a>
+					<a href="/article/{encodeTitle(article.title)}" class="text-blue-500 hover:text-blue-600">
+						Read more →
+					</a>
 				</div>
 			</article>
 		{:else}
-			<p class="text-gray-600">No posts yet!</p>
+			<p class="text-gray-600">No articles yet!</p>
 		{/each}
-	</div>
-
-	<div class="mt-8">
-		<a
-			href="/sign-in"
-			class="inline-block rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-		>
-			Sign in to write a post
-		</a>
 	</div>
 </div>
