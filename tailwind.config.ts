@@ -4,8 +4,13 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				zodiak: ['Zodiak-Variable']
+			}
+		}
 	},
 
-	plugins: []
+	plugins: [],
+	darkMode: 'class'
 } satisfies Config;

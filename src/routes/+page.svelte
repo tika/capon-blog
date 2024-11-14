@@ -3,7 +3,8 @@
 </script>
 
 <div class="mx-auto max-w-4xl p-4">
-	<h1 class="mb-8 text-3xl font-bold">Welcome to the blog</h1>
+	<h1 class="mb-8 text-6xl font-semibold"><span class="text-amber-100">blog</span></h1>
+	<p class="text-xl font-light">A collection of my opinions, thoughts, and ideas.</p>
 
 	<div class="space-y-8">
 		{#each data.posts as post}

@@ -1,6 +1,8 @@
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
 import { error } from '@sveltejs/kit';
+import { GitHubService } from '$lib/server/github';
+import { formatPostAsMarkdown } from '$lib/server/markdown';
 
 export const POST = async ({
 	locals,
@@ -30,6 +32,16 @@ export const POST = async ({
 				authorId: userId
 			})
 			.returning();
+
+		const github = new GitHubService();
+		const date = new Date();
+		const fileName = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.md`;
+
+		await github.createFile({
+			path: `posts/${fileName}`,
+			content: formatPostAsMarkdown(title, content, userId, date),
+			message: `Add blog post: ${title}`
+		});
 
 		return new Response(JSON.stringify(post[0]));
 	} catch (e) {
