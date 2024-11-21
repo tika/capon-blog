@@ -6,7 +6,7 @@
 	let { data } = $props();
 </script>
 
-<div class="mx-auto max-w-4xl p-4">
+<div>
 	<div class="flex items-center gap-4">
 		<a href={env.PUBLIC_PORTFOLIO_URL} class="flex items-center gap-2 py-4 hover:text-blue-600">
 			Portfolio <ExternalLink size={16} />
@@ -16,7 +16,7 @@
 		</a>
 	</div>
 	<div class="flex flex-col gap-2">
-		<h1 class="text-6xl font-semibold">blog</h1>
+		<h1 class="font-panchang text-6xl font-bold">tika's blog</h1>
 		<p class="text-lg font-light text-gray-300">
 			A collection of my opinions, thoughts, and ideas.
 		</p>
@@ -33,7 +33,9 @@
 				<p class="mb-4 text-gray-600">
 					{formatProperDate(new Date(article.createdAt))}
 				</p>
-				<p class="line-clamp-3 whitespace-pre-wrap">{article.content}</p>
+				<p class="line-clamp-3 whitespace-pre-wrap">
+					{@html article.content.replace(/<[^>]*>/g, '')}
+				</p>
 				<div class="mt-4">
 					<a href="/article/{encodeTitle(article.title)}" class="text-blue-500 hover:text-blue-600">
 						Read more →

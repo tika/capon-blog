@@ -1,16 +1,19 @@
+import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
+import { withUt } from 'uploadthing/tw';
 
-export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
+export default withUt({
+	content: ['./src/**/*.{html,js,svelte,ts,tsx,mdx}'],
 
 	theme: {
 		extend: {
 			fontFamily: {
-				zodiak: ['Zodiak-Variable']
+				amulya: ['Amulya-Variable'],
+				panchang: ['Panchang-Variable']
 			}
 		}
 	},
 
-	plugins: [],
+	plugins: [typography],
 	darkMode: 'class'
-} satisfies Config;
+}) satisfies Config;

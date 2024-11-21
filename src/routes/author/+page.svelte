@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import TipTap from '$lib/TipTap.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -68,6 +69,8 @@
 		title = article.title;
 		content = article.content;
 	}
+
+	let body = `<p>The initial html content.</p>`;
 </script>
 
 <div class="mx-auto max-w-2xl p-4">
@@ -81,8 +84,7 @@
 
 		<div>
 			<label for="content" class="mb-1 block text-sm font-medium">Content</label>
-			<textarea id="content" bind:value={content} class="h-32 w-full rounded border p-2" required
-			></textarea>
+			<TipTap bind:content />
 		</div>
 
 		<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
