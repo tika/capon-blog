@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import TipTap from '$lib/TipTap.svelte';
+	import Carta from '$lib/Carta.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -84,7 +84,8 @@
 
 		<div>
 			<label for="content" class="mb-1 block text-sm font-medium">Content</label>
-			<TipTap bind:content />
+			<!-- <TipTap bind:content /> -->
+			<Carta value={content} />
 		</div>
 
 		<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">

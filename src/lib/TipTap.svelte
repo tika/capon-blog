@@ -12,7 +12,7 @@
 	onMount(() => {
 		editor = createEditor({
 			extensions: [StarterKit, FloatingMenuExtension],
-			content: `Hello world!`
+			content: ''
 		});
 	});
 
