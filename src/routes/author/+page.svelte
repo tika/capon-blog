@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Carta from '$lib/Carta.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -74,47 +73,6 @@
 </script>
 
 <div class="mx-auto max-w-2xl p-4">
-	<h1 class="mb-4 text-2xl">Welcome, {data.user.firstName}</h1>
-
-	<form onsubmit={handleSubmit} class="space-y-4">
-		<div>
-			<label for="title" class="mb-1 block text-sm font-medium">Title</label>
-			<input id="title" type="text" bind:value={title} class="w-full rounded border p-2" required />
-		</div>
-
-		<div>
-			<label for="content" class="mb-1 block text-sm font-medium">Content</label>
-			<!-- <TipTap bind:content /> -->
-			<Carta value={content} />
-		</div>
-
-		<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-			{editingArticle ? 'Update' : 'Create'} Article
-		</button>
-
-		{#if editingArticle}
-			<button
-				type="button"
-				onclick={() => {
-					editingArticle = null;
-					title = '';
-					content = '';
-				}}
-				class="ml-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
-			>
-				Cancel
-			</button>
-		{/if}
-	</form>
-
-	{#if error}
-		<p class="mt-4 text-red-500">{error}</p>
-	{/if}
-
-	{#if success}
-		<p class="mt-4 text-green-500">{success}</p>
-	{/if}
-
 	<div class="mt-8 space-y-4">
 		<h2 class="text-xl font-semibold">Your Articles</h2>
 		{#each data.articles as article}

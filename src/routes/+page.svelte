@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { env } from '$env/dynamic/public';
+	import { encodeTitle, formatProperDate } from '$lib/utils';
 	import { ExternalLink, Github } from 'lucide-svelte';
-	import { encodeTitle, formatProperDate } from '../lib/utils';
 
 	let { data } = $props();
 </script>
@@ -12,7 +12,7 @@
 			Portfolio <ExternalLink size={16} />
 		</a>
 		<a href={env.PUBLIC_GITHUB_URL} class="flex items-center gap-2 py-4 hover:text-blue-600">
-			GitHub <Github size={16} />
+			Inspect Repo <Github size={16} />
 		</a>
 	</div>
 	<div class="flex flex-col gap-2">
