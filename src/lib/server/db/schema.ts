@@ -9,7 +9,8 @@ export const articles = pgTable(
 		authorId: varchar('author_id', { length: 255 }).notNull(),
 		published: boolean('published').default(false).notNull(),
 		createdAt: timestamp('created_at').defaultNow().notNull(),
-		updatedAt: timestamp('updated_at').defaultNow().notNull()
+		updatedAt: timestamp('updated_at').defaultNow().notNull(),
+		coverImageUrl: varchar('cover_image_url', { length: 255 })
 	},
 	(table) => {
 		return {

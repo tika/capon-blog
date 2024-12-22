@@ -2,39 +2,75 @@
 	import ImageUpload from '$lib/components/ImageUpload.svelte';
 	import TipTap from '$lib/TipTap.svelte';
 
-	let title = '';
-	let isEditingTitle = false;
-	let inputElement: HTMLInputElement;
+	let title = $state('');
+	let isEditingTitle = $state(false);
+	let inputElement: HTMLInputElement | null = $state(null);
 
 	function startEditing() {
 		isEditingTitle = true;
 	}
 
-	$: if (isEditingTitle && inputElement) {
-		inputElement.focus();
-	}
+	$effect(() => {
+		if (isEditingTitle && inputElement) {
+			inputElement.focus();
+		}
+	});
+
+	let coverImageUrl = $state('');
+	let content = $state('');
+
+	const publish = () => {
+		console.log(coverImageUrl);
+		console.log(title);
+		console.log(content);
+
+		fetch('/api/create-article', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				title,
+				content,
+				coverImageUrl
+			})
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('Success:', data);
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+	};
 </script>
 
-<ImageUpload />
+<div class="flex flex-col gap-8">
+	<ImageUpload bind:cloudUrl={coverImageUrl} />
 
-<div
-	class="font-panchang text-4xl font-bold"
-	on:click={startEditing}
-	on:keydown={(e) => e.key === 'Enter' && startEditing()}
-	role="button"
-	tabindex="0"
->
-	{#if isEditingTitle}
-		<input
-			bind:value={title}
-			bind:this={inputElement}
-			placeholder="Enter your title"
-			class="min-h-[1.2em] w-full resize-none overflow-hidden bg-transparent font-panchang text-4xl font-bold outline-none placeholder:text-gray-500"
-			on:blur={() => (isEditingTitle = false)}
-		/>
-	{:else}
-		<h1>{title || 'Enter your title'}</h1>
-	{/if}
+	<div
+		class="font-panchang text-4xl font-bold"
+		onclick={startEditing}
+		onkeydown={(e) => e.key === 'Enter' && startEditing()}
+		role="button"
+		tabindex="0"
+	>
+		{#if isEditingTitle}
+			<input
+				bind:value={title}
+				bind:this={inputElement}
+				placeholder="Enter your title"
+				class="min-h-[1.2em] w-full resize-none overflow-hidden bg-transparent font-panchang text-4xl font-bold outline-none placeholder:text-gray-500"
+				onblur={() => (isEditingTitle = false)}
+			/>
+		{:else}
+			<h1>{title || 'Enter your title'}</h1>
+		{/if}
+	</div>
+
+	<TipTap bind:content />
+
+	<button class="rounded-md bg-blue-500 px-4 py-2 text-white" onclick={publish}
+		>Publish article</button
+	>
 </div>
-
-<TipTap />

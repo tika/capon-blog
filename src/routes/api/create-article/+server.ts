@@ -17,7 +17,7 @@ export const POST = async ({
 		throw error(401, 'Unauthorized');
 	}
 
-	const { title, content } = await request.json();
+	const { title, content, coverImageUrl } = await request.json();
 
 	if (!title?.trim() || !content?.trim()) {
 		throw error(400, 'Title and content are required');
@@ -29,7 +29,8 @@ export const POST = async ({
 			.values({
 				title,
 				content,
-				authorId: userId
+				authorId: userId,
+				coverImageUrl
 			})
 			.returning();
 
@@ -39,7 +40,7 @@ export const POST = async ({
 
 		await github.createFile({
 			path: `articles/${fileName}`,
-			content: formatArticleAsMarkdown(title, content, userId, date),
+			content: formatArticleAsMarkdown(title, content, userId, date, coverImageUrl),
 			message: `Add blog article: ${title}`
 		});
 

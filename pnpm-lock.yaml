@@ -71,6 +71,9 @@ dependencies:
   svelte-clerk:
     specifier: ^0.4.3
     version: 0.4.3(react-dom@18.3.1)(react@18.3.1)(svelte@5.1.16)
+  svelte-easy-crop:
+    specifier: ^3.0.1
+    version: 3.0.1(svelte@5.1.16)
   svelte-tiptap:
     specifier: ^2.0.3
     version: 2.0.3(@tiptap/core@2.9.1)(@tiptap/extension-bubble-menu@2.9.1)(@tiptap/extension-floating-menu@2.9.1)(@tiptap/pm@2.9.1)(svelte@5.1.16)
@@ -5291,6 +5294,14 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
+    dev: false
+
+  /svelte-easy-crop@3.0.1(svelte@5.1.16):
+    resolution: {integrity: sha512-0/qGWkoEJfIOGJOejjsLvyvZEQlH+VS4PhD7jFAWvbVrotqpcnKF0StAHvs1TEkQ1RvJW6Tpm7QBHVAxTuZ5zA==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0
+    dependencies:
+      svelte: 5.1.16
     dev: false
 
   /svelte-eslint-parser@0.43.0(svelte@5.1.16):
