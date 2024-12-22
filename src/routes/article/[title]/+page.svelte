@@ -11,7 +11,9 @@
 		Posted on {new Date(data.article.createdAt).toLocaleDateString()}
 	</div>
 
-	<div class="prose prose-lg prose-invert max-w-none">
+	<img src={data.article.coverImageUrl} alt="Cover image" />
+
+	<div class="prose prose-lg max-w-none">
 		{@html data.article.content}
 	</div>
 
