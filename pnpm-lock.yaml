@@ -74,6 +74,9 @@ dependencies:
   svelte-easy-crop:
     specifier: ^3.0.1
     version: 3.0.1(svelte@5.1.16)
+  svelte-french-toast:
+    specifier: ^1.2.0
+    version: 1.2.0(svelte@5.1.16)
   svelte-tiptap:
     specifier: ^2.0.3
     version: 2.0.3(@tiptap/core@2.9.1)(@tiptap/extension-bubble-menu@2.9.1)(@tiptap/extension-floating-menu@2.9.1)(@tiptap/pm@2.9.1)(svelte@5.1.16)
@@ -5321,6 +5324,15 @@ packages:
       svelte: 5.1.16
     dev: true
 
+  /svelte-french-toast@1.2.0(svelte@5.1.16):
+    resolution: {integrity: sha512-5PW+6RFX3xQPbR44CngYAP1Sd9oCq9P2FOox4FZffzJuZI2mHOB7q5gJBVnOiLF5y3moVGZ7u2bYt7+yPAgcEQ==}
+    peerDependencies:
+      svelte: ^3.57.0 || ^4.0.0
+    dependencies:
+      svelte: 5.1.16
+      svelte-writable-derived: 3.1.1(svelte@5.1.16)
+    dev: false
+
   /svelte-tiptap@2.0.3(@tiptap/core@2.9.1)(@tiptap/extension-bubble-menu@2.9.1)(@tiptap/extension-floating-menu@2.9.1)(@tiptap/pm@2.9.1)(svelte@5.1.16):
     resolution: {integrity: sha512-YBIltliEBNGhNhVH8uhrQkHY275tCSxv8U7XyLXHiAqRuZGCIhs69ZbAeUn1ABoUCAJKxYWG0lXW4pfAlKJmpQ==}
     peerDependencies:
@@ -5334,6 +5346,14 @@ packages:
       '@tiptap/extension-bubble-menu': 2.9.1(@tiptap/core@2.9.1)(@tiptap/pm@2.9.1)
       '@tiptap/extension-floating-menu': 2.9.1(@tiptap/core@2.9.1)(@tiptap/pm@2.9.1)
       '@tiptap/pm': 2.9.1
+      svelte: 5.1.16
+    dev: false
+
+  /svelte-writable-derived@3.1.1(svelte@5.1.16):
+    resolution: {integrity: sha512-w4LR6/bYZEuCs7SGr+M54oipk/UQKtiMadyOhW0PTwAtJ/Ai12QS77sLngEcfBx2q4H8ZBQucc9ktSA5sUGZWw==}
+    peerDependencies:
+      svelte: ^3.2.1 || ^4.0.0-next.1 || ^5.0.0-next.94
+    dependencies:
       svelte: 5.1.16
     dev: false
 

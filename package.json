@@ -63,6 +63,7 @@
 		"postgres": "^3.4.4",
 		"svelte-clerk": "^0.4.3",
 		"svelte-easy-crop": "^3.0.1",
+		"svelte-french-toast": "^1.2.0",
 		"svelte-tiptap": "^2.0.3",
 		"tipex\n": "link:@friendsofsvelte/tipex\n",
 		"uploadthing": "^7.3.0"

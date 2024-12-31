@@ -17,9 +17,7 @@
 	</div>
 	<div class="flex flex-col gap-2">
 		<h1 class="font-panchang text-6xl font-bold">tika's blog</h1>
-		<p class="text-lg font-light text-gray-300">
-			A collection of my opinions, thoughts, and ideas.
-		</p>
+		<p class="text-lg text-gray-600">A collection of my opinions, thoughts, and ideas.</p>
 	</div>
 
 	<hr class="my-8" />

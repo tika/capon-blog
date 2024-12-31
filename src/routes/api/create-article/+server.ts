@@ -1,8 +1,8 @@
 import { db } from '$lib/server/db';
 import { articles } from '$lib/server/db/schema';
 import { GitHubService } from '$lib/server/github';
+import { formatArticleAsMarkdown } from '$lib/server/markdown';
 import { error } from '@sveltejs/kit';
-import { formatArticleAsMarkdown } from '../../../lib/server/markdown';
 
 export const POST = async ({
 	locals,

@@ -1,9 +1,11 @@
 import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
-import { withUt } from 'uploadthing/tw';
 
-export default withUt({
-	content: ['./src/**/*.{html,js,svelte,ts,tsx,mdx}'],
+/** @type {import('tailwindcss').Config} */
+const config = {
+	content: [
+		'./src/**/*.{html,js,svelte,ts,tsx,mdx}',
+		'./node_modules/@uploadthing/svelte/dist**' // <-- add this lin
+	],
 
 	theme: {
 		extend: {
@@ -16,4 +18,6 @@ export default withUt({
 
 	plugins: [typography],
 	darkMode: 'class'
-}) satisfies Config;
+};
+
+export default config;
