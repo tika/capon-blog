@@ -29,7 +29,7 @@
 </script>
 
 {#if editor}
-	<div class="mb-4 flex flex-wrap gap-2 text-black">
+	<div class="mb-4 flex flex-wrap gap-2">
 		<button
 			onclick={() => editor?.chain().focus().toggleBold().run()}
 			disabled={!editor.can().chain().focus().toggleBold().run()}
@@ -177,4 +177,7 @@
 	</div>
 {/if}
 
-<div bind:this={element} class="prose max-w-none outline-none first:mt-0"></div>
+<div
+	bind:this={element}
+	class="prose max-w-none rounded-lg bg-gray-50 p-4 text-black outline-none first:mt-0"
+></div>

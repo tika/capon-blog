@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ImageUpload from '$lib/components/ImageUpload.svelte';
 	import TipTap from '$lib/TipTap.svelte';
+	import toast from 'svelte-french-toast';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -27,24 +28,31 @@
 		console.log(title);
 		console.log(content);
 
-		fetch(`/api/articles/${data.article.id}/edit`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				title,
-				content,
-				coverImageUrl
+		toast.promise(
+			fetch(`/api/articles/${data.article.id}/edit`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					title,
+					content,
+					coverImageUrl
+				})
 			})
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log('Success:', data);
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
+				.then((response) => response.json())
+				.then((data) => {
+					console.log('Success:', data);
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				}),
+			{
+				loading: 'Updating...',
+				success: 'Succesfully updated article!',
+				error: 'Could not update article'
+			}
+		);
 	};
 </script>
 

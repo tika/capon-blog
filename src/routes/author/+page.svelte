@@ -4,6 +4,10 @@
 
 	let { data }: { data: PageData } = $props();
 
+	let sortedArticles = data.articles
+		.slice()
+		.sort((a, b) => a.updatedAt.getTime() - b.updatedAt.getTime());
+
 	async function handleDelete(id: number) {
 		if (!confirm('Are you sure you want to delete this article?')) return;
 
@@ -27,7 +31,7 @@
 <div class="mx-auto max-w-2xl p-4">
 	<div class="mt-8 space-y-4">
 		<h2 class="text-xl font-semibold">Your Articles</h2>
-		{#each data.articles as article}
+		{#each sortedArticles as article}
 			<div class="rounded-lg border p-4">
 				<h3 class="text-lg font-medium">{article.title}</h3>
 				<div class="mt-2 flex gap-2">
