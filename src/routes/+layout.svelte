@@ -3,6 +3,7 @@
 	import { dark } from '@clerk/themes';
 
 	import { ClerkProvider } from 'svelte-clerk';
+	import { Toaster } from 'svelte-french-toast';
 	import '../styles/amulya.css';
 	import '../styles/app.css';
 	import '../styles/panchang.css';
@@ -10,6 +11,7 @@
 	const { children } = $props();
 </script>
 
+<Toaster />
 <ClerkProvider
 	publishableKey={env.PUBLIC_CLERK_PUBLISHABLE_KEY}
 	appearance={{

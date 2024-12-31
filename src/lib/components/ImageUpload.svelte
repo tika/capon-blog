@@ -5,6 +5,7 @@
 	import imageCompression from 'browser-image-compression';
 	import { Image, Loader, Trash } from 'lucide-svelte';
 	import Cropper from 'svelte-easy-crop';
+	import toast from 'svelte-french-toast';
 	import { genUploader } from 'uploadthing/client';
 
 	// When editing, the cloud URL must show the current image provided
@@ -107,6 +108,8 @@
 
 			// If the upload was successful, changes made resets
 			changesMade = false;
+
+			toast.success('Uploaded new image');
 		} catch (error) {
 			console.error('Upload failed:', error);
 			// Handle error
@@ -153,15 +156,21 @@
 
 				<button
 					type="button"
-					class="flex items-center gap-2 rounded-md bg-blue-500 px-4 py-2 text-white {processing &&
-						'opacity-50'}"
+					class="flex items-center gap-2 rounded-md
+          disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-200
+          {changesMade ? 'bg-red-500' : 'bg-blue-500'} px-4 py-2 text-white {processing &&
+						'opacity-50'}
+            "
+					disabled={!changesMade}
 					onclick={handleUpload}
 				>
 					{#if processing}
 						Processing...
 						<Loader class="animate-spin" />
+					{:else if changesMade}
+						Upload unsaved changes
 					{:else}
-						Upload
+						Upload new image
 					{/if}
 				</button>
 			</div>
